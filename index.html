@@ -31,26 +31,37 @@
 
 
 <section class="hero" id="home">
-  <div class="hero-overlay"></div>
 
-  <div class="hero-content">
-    
-
-    <h1 class="hero-title">
-      <span id="typing-text"></span>
-    </h1>
-
-    <p class="hero-subtext">
-      A global movement committed to righteousness, moral values, and positive social change.
-    </p>
-
-    <a href="#about" class="hero-btn">
-      Learn More
-    </a>
+  <div class="hero-slide active" style="background-image: url('images/1.png');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Morality in the interest of Humanity</h1>
+      <p>Join us in creating positive change and support locals needs.</p>
+      <a href="#about" class="hero-btn">Get Involved Today</a>
+    </div>
+    <div class="scroll-indicator">↓</div>
   </div>
-   <div  class="scroll-indicator">↓</div>
-</section>
- 
+
+  <div class="hero-slide" style="background-image: url('images/isa.png'); background-position: middle center;">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Together in Humanity</h1>
+      <p>Encouraging respect, compassion, and shared values.</p>
+      <a href="#about" class="hero-btn">Get Involved Today </a>
+    </div>
+    <div class="scroll-indicator">↓</div>
+  </div>
+
+  <div class="hero-slide" style="background-image: url('images/judiaism.png'); background-position: middle center;">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Beyond Religion</h1>
+      <p>Standing for righteousness, unity, and positive change.</p>
+      <a href="#about" class="hero-btn">Learn More</a>
+    </div>
+    <div class="scroll-indicator">↓</div>
+  </div>
+
 </section>
 
  
@@ -275,31 +286,90 @@
       <!-- TEAM MEMBER 1 -->
       <div class="team-card">
         <div class="team-image">
-          <img src="images/IMG-20250524-WA0197.jpg" alt="Founder">
+          <img src="images/mr.jpeg" alt="Founder">
         </div>
-        <h3>Founder & President</h3>
+         <div class="team-info">
+            <h3>Founder & President</h3>
         <p class="role">Founder, The Right Assembly</p>
         <p class="bio">
           A committed advocate for righteousness, moral clarity, and positive societal transformation.
         </p>
-      </div>
+         </div>
+        </div>
 
       <!-- TEAM MEMBER 2 -->
       <div class="team-card">
         <div class="team-image">
           <img src="images/IMG-20250524-WA0197.jpg" alt="Co-Founder">
         </div>
-        <h3>Co-Founder</h3>
+         <div class="team-info">
+           <h3>Co-Founder</h3>
         <p class="role">Co-Founder, The Right Assembly</p>
         <p class="bio">
           Dedicated to interfaith tolerance, youth development, and ethical leadership.
         </p>
-      </div>
+         </div>
+         </div>
 
+  
     </div>
 
   </div>
 </section>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- LOGO + NAME -->
+    <div class="footer-brand">
+      <img src="images/logo.png" alt="Logo">
+      <h3>The Right Assembly</h3>
+    </div>
+
+    <!-- TEXT -->
+       <p class="footer-text"> (614) 5995953</p>
+    <p class="footer-text">
+      Promoting righteousness, unity, and positive social impact across communities.
+    </p>
+
+    <!-- BUTTONS -->
+    <div class="footer-buttons">
+      <a href="#" class="btn donate">Give Today</a>
+      <a href="#" class="btn join">Join Us</a>
+    </div>
+
+    <p class="footer-text">© 2026 The Right Assembly. All rights reserved.</p>
+
+  </div>
+</footer>
+
+<div class="chat-btn" id="chatBtn">
+  <i class="fa-solid fa-comment-dots"></i>
+</div>
+
+<div class="chat-box" id="chatBox">
+
+  <div class="chat-header">
+    <h4>Contact Us</h4>
+    <span id="closeChat">&times;</span>
+  </div>
+
+  <div class="chat-body">
+    <p>We’ll respond as soon as we can.</p>
+
+    <div class="chat-message">
+      <strong>The Right Assembly</strong>
+      <p>Let me know if you have any questions!</p>
+    </div>
+  </div>
+
+  <div class="chat-footer">
+    <button>Send a Message</button>
+  </div>
+
+</div>
+
+
 
 
 
@@ -313,43 +383,41 @@
     navMenu.classList.toggle("active");
   });
 
-  
-  const textArray = [
-    "Standing for Righteousness",
-    "Uplifting Moral Values",
-    "Building a Better Society"
-  ];
+  const slides = document.querySelectorAll(".hero-slide");
+let currentSlide = 0;
 
-  let index = 0;
-  let charIndex = 0;
-  const typingText = document.getElementById("typing-text");
+function showSlide() {
+  slides.forEach(slide => slide.classList.remove("active"));
 
-  function typeLoop() {
-    if (charIndex < textArray[index].length) {
-      typingText.textContent += textArray[index].charAt(charIndex);
-      charIndex++;
-      setTimeout(typeLoop, 80);
-    } else {
-      setTimeout(eraseLoop, 2000);
-    }
-  }
+  currentSlide = (currentSlide + 1) % slides.length;
 
-  function eraseLoop() {
-    if (charIndex > 0) {
-      typingText.textContent =
-        textArray[index].substring(0, charIndex - 1);
-      charIndex--;
-      setTimeout(eraseLoop, 40);
-    } else {
-      index = (index + 1) % textArray.length;
-      setTimeout(typeLoop, 600);
-    }
-  }
+  slides[currentSlide].classList.add("active");
+}
 
-  document.addEventListener("DOMContentLoaded", typeLoop);
+setInterval(showSlide, 5000);
+
+
+  const chatBtn = document.getElementById("chatBtn");
+  const chatBox = document.getElementById("chatBox");
+  const closeChat = document.getElementById("closeChat");
+
+  chatBtn.addEventListener("click", () => {
+    chatBox.style.display = "flex";
+  });
+
+  closeChat.addEventListener("click", () => {
+    chatBox.style.display = "none";
+  });
+
 
 </script>
 
 
 </body>
 </html>
+
+
+
+
+
+
